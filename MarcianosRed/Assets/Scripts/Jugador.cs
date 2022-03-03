@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class Jugador : MonoBehaviour
@@ -9,7 +10,7 @@ public class Jugador : MonoBehaviour
     float entrada;
 
     Vector3 siguientePosicion = Vector2.zero;
-    // Start is called before the first frame update
+
     void Start()
     {
 
