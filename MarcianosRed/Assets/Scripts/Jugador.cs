@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Jugador : MonoBehaviour
+public class Jugador : NetworkBehaviour
 {
     [SerializeField]
     private float velocidad = 4;
@@ -13,7 +13,7 @@ public class Jugador : MonoBehaviour
 
     void Start()
     {
-
+        SituarAlJugadorEnPantalla();
     }
 
     // Update is called once per frame
@@ -25,5 +25,13 @@ public class Jugador : MonoBehaviour
         {
             this.transform.Translate(Vector3.right * (entrada * Time.deltaTime * velocidad));
         }
+    }
+
+    //La pantalla tiene un alto de 5 unidades el jugador por defecto esta en alto 0
+    //El primer jugador solo se movera 3 unidades hacia abajo y el jugador 2 4 
+    //para eso utilizamos el ClientNetworkId
+    private void SituarAlJugadorEnPantalla(){
+        Vector3 posicion = this.transform.position;
+        this.transform.position = posicion - (Vector3.up * (2 + OwnerClientId));
     }
 }
