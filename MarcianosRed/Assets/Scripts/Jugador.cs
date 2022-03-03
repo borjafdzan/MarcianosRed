@@ -69,7 +69,7 @@ public class Jugador : NetworkBehaviour
 
     private void SpawnProyectil()
     {
-        GameObject objeto = Instantiate(this.proyectil, new Vector3(this.transform.position.x, this.transform.position.y + 1f, this.transform.position.z), Quaternion.identity);
+        GameObject objeto = Instantiate(this.proyectil, new Vector3(this.transform.position.x, this.transform.position.y + 0.1f, this.transform.position.z), Quaternion.identity);
         NetworkObject objetoRed = objeto.GetComponent<NetworkObject>();
         objetoRed.Spawn();
     }
