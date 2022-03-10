@@ -20,7 +20,22 @@ public class Proyectiles : NetworkBehaviour
         this.transform.Translate(Vector3.up * (Time.deltaTime * velocidad));
         if (this.transform.position.y > 10){
             //Destroy(gameObject);
-            this.objetoRed.Despawn();
+            if (IsServer){
+                this.objetoRed.Despawn();
+            }
+            
+        }
+    }
+
+
+
+    //Cada vez que un proyectil colisiona con un enemigo el enemigo se muere
+    private void OnTriggerEnter2D(Collider2D colisionador){
+        Enemigo enemigo = colisionador.gameObject.GetComponent<Enemigo>();
+        if (enemigo){
+            Debug.Log("el proyectil colisiona con el enemigo");
+            //Ahora accederemos al componente de red del enemigo
+            enemigo.Morir();
         }
     }
 }
